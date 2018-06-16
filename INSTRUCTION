@@ -1,0 +1,19 @@
+
+
+
+npm install -g @angular/cli@6.0.5
+
+npm install --save-dev @angular-devkit/build-angular
+
+
+Start project...
+
+clean npm module folder 
+
+npm install
+
+ng serve
+
+localhost:4200
+
+

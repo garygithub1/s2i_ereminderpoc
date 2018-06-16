@@ -1,0 +1,66 @@
+<div class="FormPage mt-3 container">
+  <div class="Errors alert alert-danger" role="alert" *ngIf="flow !== 'DONE'">
+    <div *ngIf="errMsg">
+      {{errMsg}}
+    </div>
+    <div
+      *ngIf="fm.controls.driverLicenceNumber && fm.controls.driverLicenceNumber.errors && (fm.controls.driverLicenceNumber.dirty || fm.controls.driverLicenceNumber.touched)">
+      <div *ngIf="fm.controls.driverLicenceNumber.errors.required">DL Required</div>
+      <div *ngIf="fm.controls.driverLicenceNumber.errors.pattern">Invalid DL format</div>
+    </div>
+    <div
+      *ngIf="fm.controls.expiryDate && fm.controls.expiryDate.errors && (fm.controls.expiryDate.dirty || fm.controls.expiryDate.touched)">
+      <div *ngIf="fm.controls.expiryDate.errors.required">Expiry Date Required</div>
+      <div *ngIf="fm.controls.expiryDate.errors.maxlength">Invalid date format</div>
+      <div *ngIf="fm.controls.expiryDate.errors.pattern">Invalid date format</div>
+    </div>
+    <div
+      *ngIf="fm.controls.email && fm.controls.email.errors && (fm.controls.email.dirty || fm.controls.email.touched)">
+      <div *ngIf="fm.controls.email.errors.required">Email is required</div>
+      <div *ngIf="fm.controls.email.errors.pattern">The email address must contain at least the @ character
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="fm" novalidate>
+    <div *ngIf="flow !== 'DONE'">
+
+      <s2i-driverlicencenumber [controlContainer]="fm" [controlName]="'driverLicenceNumber'"></s2i-driverlicencenumber>
+
+      <s2i-expirydate [controlContainer]="fm" [controlName]="'expiryDate'"></s2i-expirydate>
+
+      <s2i-navbuttons [buttonName]="'enr.verify'" [buttonTitle]="'enr.verify.title'" (buttonClick)="onVerify()" *ngIf="flow === 'VERIFY'"></s2i-navbuttons>
+
+    </div>
+
+    <div *ngIf="flow === 'SUBSCRIBE'">
+
+      <s2i-email [controlContainer]="fm" [controlName]="'email'"
+                 [helpText]="'We ll never share your email with anyone else.'"></s2i-email>
+
+      <s2i-navbuttons [buttonName]="'Subscribe'" (buttonClick)="onSubscribe()"></s2i-navbuttons>
+
+    </div>
+
+    <div *ngIf="flow === 'UPDATE'">
+
+      <s2i-email [controlContainer]="fm" [controlName]="'email'"
+                 [helpText]="'You are subscribed already. You can update your email address.'"></s2i-email>
+
+      <s2i-navbuttons [buttonName]="'Update'" (buttonClick)="onUpdate()"></s2i-navbuttons>
+
+    </div>
+
+    <div class="Instructions alert alert-success" role="alert" *ngIf="flow === 'DONE'">
+      <h3 class="text-center">{{'enr.update.receiveDlra' | translate}}</h3>
+    </div>
+
+  </form>
+</div>
+
+<!-- dev only -->
+<div style="position:fixed;bottom:0;left:0;z-index:9;">
+  <button class="btn btn-info" type="button" (click)="onTestSubscribe()">Test Subscribe</button>
+  <button class="btn btn-info" type="button" (click)="onTestUpdate()">Test Update</button>
+</div>
+<!-- <pre>{{ fm.value | json }}</pre> -->

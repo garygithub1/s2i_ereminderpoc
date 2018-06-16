@@ -1,0 +1,15 @@
+<section class="Section Question" [ngClass]="{
+  'Invalid': v.invalid && (v.dirty || v.touched),
+  'Valid': v.valid && (v.dirty || v.touched)
+  }">
+  <div class="Detail">
+    <div class="Field form-group">
+      <label>{{label | translate}}</label>
+      <input class="form-control" maxlength="10" title="{{title | translate}}" type="date" [formControl]="v" required>
+      <div class="Error invalid-feedback" *ngIf="v.errors && (v.dirty || v.touched)">
+        <div *ngIf="v.errors.required">{{'enr.error.expd.required' | translate}}</div>
+        <div *ngIf="v.errors.pattern || v.errors.maxlength">{{'enr.error.expd.invalid' | translate}}</div>
+      </div>
+    </div>
+  </div>
+</section>

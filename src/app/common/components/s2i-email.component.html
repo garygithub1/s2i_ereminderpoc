@@ -1,0 +1,55 @@
+<section class="Section Question" [ngClass]="{
+  'Invalid': v.invalid && (v.dirty || v.touched),
+  'Valid': v.valid && (v.dirty || v.touched)
+  }">
+  <small class="form-text text-muted" id="emailHelp">{{helpText}}</small>
+  <div class="Detail">
+    <div class="Field form-group">
+      <label for="exampleInputEmail1x">{{label}}</label>
+      <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1x" placeholder="{{placeholder}}"
+             title="{{title}}"
+             type="email" [formControl]="v" required>
+      <div class="Error invalid-feedback" *ngIf="v.errors && (v.dirty || v.touched)">
+        <div *ngIf="v.errors.required">Email is required</div>
+        <div *ngIf="v.errors.pattern">The email address must contain at least the @ character
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address:</label>
+    <small class="form-text text-muted text-right" id="emailHelp">We'll never share your email with anyone else.
+    </small>
+    <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1" placeholder="Enter email" title="Please enter your email address."
+      type="email" formControlName="email" required [ngClass]="{
+               'is-invalid': fm.controls.emailGrp.controls.email.invalid && (fm.controls.emailGrp.controls.email.dirty || fm.controls.emailGrp.controls.email.touched),
+               'is-valid': fm.controls.emailGrp.controls.email.valid && (fm.controls.emailGrp.controls.email.dirty || fm.controls.emailGrp.controls.email.touched)
+               }">
+    <div class="invalid-feedback" *ngIf="fm.controls.emailGrp.controls.email.errors && (fm.controls.emailGrp.controls.email.dirty || fm.controls.emailGrp.controls.email.touched)">
+      <div *ngIf="fm.controls.emailGrp.controls.email.errors.required">Email is required</div>
+      <div *ngIf="fm.controls.emailGrp.controls.email.errors.pattern">The email address must contain at least the @ character
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail2">Confirm email address:</label>
+    <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail2" onpaste="return false;" placeholder="Enter email"
+      title="Please confirm your email address by re-entering the email address you entered above." type="email" formControlName="reemail"
+      required [ngClass]="{
+               'is-invalid': fm.controls.emailGrp.controls.reemail.invalid && (fm.controls.emailGrp.controls.reemail.dirty || fm.controls.emailGrp.controls.reemail.touched),
+               'is-valid': fm.controls.emailGrp.controls.reemail.valid && (fm.controls.emailGrp.controls.reemail.dirty || fm.controls.emailGrp.controls.reemail.touched)
+               }">
+    <div class="invalid-feedback" *ngIf="fm.controls.emailGrp.controls.reemail.errors && (fm.controls.emailGrp.controls.reemail.dirty || fm.controls.emailGrp.controls.reemail.touched)">
+      <div *ngIf="fm.controls.emailGrp.controls.reemail.errors.required">Email is required</div>
+      <div *ngIf="fm.controls.emailGrp.controls.reemail.errors.pattern">The email address must contain at least the @ character
+      </div>
+      <div *ngIf="fm.controls.emailGrp.controls.reemail.errors.notmatch && !fm.controls.emailGrp.controls.reemail.errors.pattern">Email not match</div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="button" (click)="onSubmit()">Submit</button>
+</div> -->
