@@ -31,7 +31,7 @@ spec:
         tier: web
     spec:
       containers:
-        - image: garydhub1/s2i_ereminder_front:dev
+        - image: garydhub1/s2i_ereminder_web:dev
           imagePullPolicy: IfNotPresent
           name: s2i-ereminder-web
           env:
