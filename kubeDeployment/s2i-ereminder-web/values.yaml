@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: garydhub1/s2i_ereminder_web
+  repository: garydhub1/s2i-ereminder-web
   tag: 
   pullPolicy: IfNotPresent
 
